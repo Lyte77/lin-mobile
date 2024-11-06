@@ -1,0 +1,6 @@
+asgiref
+Django
+django-bootstrap
+Pillow
+sqlparse
+tzdata
