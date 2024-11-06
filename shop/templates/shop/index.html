@@ -52,8 +52,8 @@
 
             <!-- Products section -->
             <section>
-
-              <div class="container">
+<!-- 
+               <div class="container">
                 <div class="row" id="product-list">
                   {% for product in products %}
                   <div class="col-md-4">
@@ -76,7 +76,7 @@
 
                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ product.id }}">
                           View {{ product.name }}
-                        </button
+                             </button>
                       </div>
                       {% if request.user.is_authenticated %}
                       <div class="container">
@@ -99,9 +99,42 @@
                       </div>
                       {% endif %}
                     </div>
-                  </div>
-                  {% endfor %}
-            </section>
+                    {% endfor %}
+                  </div> 
+            </section> -->
+
+            {% comment %} new card {% endcomment %}
+            <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4 ">
+                {% for product in products %}
+                <div class="col">
+                    <div class="card radius-15 mb-5">
+                        <div class="card-body text-center">
+                            <div class="p-4 radius-15">
+                                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" width="200" height="200" >
+                                <h5 class="mb-0 mt-5 text-white">{{ product.name }}</h5>
+                                <div class="price">
+                                    <p class="card-text font-weight-bold">$ {{ product.new_price }}</p>
+                                    <p class="card-text text-muted"><del>${{ product.old_price}}</del></p>
+
+                                </div>
+                             
+                                    <h5 class="card-title"> {{ product.name }}</h5>
+                        
+                                <a href="{% url 'shop:product_delete' product.id %}">
+                                    <button class="btn btn-warning ">Remove</button>
+                                  </a>
+
+                                  <a href="{% url 'shop:edit' product.id %}">
+                                    <button class="btn btn-primary " >Edit</button>
+                                  </a>
+
+                               
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
 
 
 {% for product in products %}
